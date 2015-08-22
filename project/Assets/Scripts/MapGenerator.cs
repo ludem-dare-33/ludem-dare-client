@@ -3,13 +3,15 @@ using System.Collections;
 
 public class MapGenerator : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+	void Update() {
+		Mesh mesh = GetComponent<MeshFilter>().mesh;
+		Vector3[] vertices = mesh.vertices;
+		Vector3[] normals = mesh.normals;	
+		int i = 0;
+		while (i < vertices.Length) {
+			vertices[i] += normals[i];// + new Vector3(0f, .01f, 0f);//* Mathf.Sin(Time.time);
+			i++;
+		}
+		mesh.vertices = vertices;
 	}
 }
